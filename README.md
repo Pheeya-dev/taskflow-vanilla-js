@@ -49,7 +49,7 @@ Through this project, I'm practising:
 
 1. Clone this repository.
 2. Open the project folder.
-3. Open `index.html` in your browser.
+3. Open `todo.html` in your browser.
 
 No frameworks or external dependencies are required.
 

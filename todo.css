@@ -1,0 +1,681 @@
+
+/* =================================
+   1. DESIGN VARIABLES
+================================= */
+
+:root {
+    --bg-primary: #f5f8f6;
+    --bg-surface: #ffffff;
+    --bg-muted: #f0f5f2;
+
+    --text-primary: #202a25;
+    --text-secondary: #758078;
+
+    --border-color: #e5ebe7;
+
+    --accent-color: #18865b;
+    --accent-hover: #116c49;
+
+    --danger-color: #dc4545;
+
+    --shadow: 0 4px 20px rgba(31, 55, 42, 0.04);
+
+    --card-radius: 16px;
+}
+
+
+/* =================================
+   2. GLOBAL STYLES
+================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+
+    font-family: Inter, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+
+    line-height: 1.5;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 3px solid rgba(24, 134, 91, 0.22);
+    outline-offset: 2px;
+}
+
+
+/* =================================
+   3. PAGE LAYOUT
+================================= */
+
+.app-shell {
+    width: min(1100px, 100% - 48px);
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.app-main {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+
+/* =================================
+   4. HEADER
+================================= */
+
+.app-header {
+    margin-bottom: 32px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.brand-mark {
+    display: grid;
+    place-items: center;
+
+    width: 52px;
+    height: 52px;
+
+    border-radius: 15px;
+
+    background-color: var(--accent-color);
+    color: white;
+
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.eyebrow {
+    margin: 0 0 5px;
+
+    color: var(--accent-color);
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.app-header h1 {
+    margin: 0;
+
+    font-size: 28px;
+    font-weight: 750;
+    letter-spacing: -1px;
+}
+
+.header-subtitle {
+    margin: 2px 0 0;
+
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+
+/* =================================
+   5. STATISTICS
+================================= */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.stat-card {
+    padding: 20px;
+
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+
+    box-shadow: var(--shadow);
+}
+
+.stat-label {
+    display: block;
+    margin-bottom: 9px;
+
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.stat-card p {
+    margin: 0;
+
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+/* =================================
+   6. GENERAL PANELS
+================================= */
+
+.panel {
+    padding: 25px;
+
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+
+    box-shadow: var(--shadow);
+}
+
+.section-heading,
+.tasks-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+}
+
+.section-heading h2,
+.tasks-heading h2 {
+    margin: 0;
+
+    font-size: 19px;
+    letter-spacing: -0.4px;
+}
+
+
+/* =================================
+   7. FORM FIELDS
+================================= */
+
+.task-form-grid {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 1fr 1fr;
+    gap: 16px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    color: var(--text-primary);
+    font-size: 12px;
+    font-weight: 650;
+}
+
+input,
+select {
+    width: 100%;
+    min-width: 0;
+    height: 44px;
+
+    padding: 0 12px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 9px;
+
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+
+    font-size: 13px;
+
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input::placeholder {
+    color: #a0aaa3;
+}
+
+input:hover,
+select:hover {
+    border-color: #b9c9bf;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(24, 134, 91, 0.09);
+}
+
+
+/* =================================
+   8. FORM ACTIONS
+================================= */
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.form-actions p {
+    margin: 0;
+
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+button {
+    min-height: 38px;
+    padding: 8px 14px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 9px;
+
+    background-color: white;
+    color: var(--text-primary);
+
+    font-size: 12px;
+    font-weight: 650;
+
+    transition: background-color 0.2s, border-color 0.2s,
+        transform 0.2s;
+}
+
+button:hover {
+    border-color: #b8c9bf;
+    background-color: var(--bg-muted);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+.primary-button {
+    min-height: 42px;
+    padding: 10px 20px;
+
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
+}
+
+.primary-button:hover {
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
+}
+
+
+/* =================================
+   9. SEARCH AND FILTER CONTROLS
+================================= */
+
+.controls-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.controls-top {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    align-items: end;
+    gap: 24px;
+}
+
+.search-control {
+    display: flex;
+    gap: 8px;
+}
+
+.search-control input {
+    flex: 1;
+}
+
+#search-todos {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
+}
+
+#search-todos:hover {
+    background-color: var(--accent-hover);
+}
+
+#filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+#filter-options button {
+    flex: 1;
+}
+
+.select-controls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+
+/* =================================
+   10. TASK LIST
+================================= */
+
+.task-panel {
+    min-width: 0;
+}
+
+.tasks-heading {
+    margin-bottom: 20px;
+}
+
+.clear-button {
+    color: var(--danger-color);
+    border-color: #f1dada;
+    background-color: #fffafa;
+}
+
+.clear-button:hover {
+    background-color: #fff0f0;
+    border-color: #edc4c4;
+}
+
+
+/* =================================
+   11. TODO ITEMS
+================================= */
+
+#todo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    width: 100%;
+    min-width: 0;
+
+    padding: 15px 16px;
+
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.todo-item:hover {
+    border-color: #cbd9d0;
+    box-shadow: 0 3px 12px rgba(31, 55, 42, 0.05);
+}
+
+.todo-item input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    min-width: 17px;
+
+    accent-color: var(--accent-color);
+    cursor: pointer;
+}
+
+.todo-item .todo-text {
+    flex: 1 1 180px;
+    min-width: 100px;
+
+    font-size: 14px;
+    font-weight: 550;
+
+    overflow-wrap: anywhere;
+}
+
+.todo-item.completed .todo-text {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+    opacity: 0.65;
+}
+
+
+/* =================================
+   12. DUE DATE
+================================= */
+
+.due-date {
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+
+/* =================================
+   13. PRIORITY BADGES
+================================= */
+
+.priority,
+.category {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 650;
+    white-space: nowrap;
+}
+
+.priority-low {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.priority-medium {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.priority-high {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+
+/* =================================
+   14. CATEGORY BADGES
+================================= */
+
+.category-learning {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.category-work {
+    background-color: #ede9fe;
+    color: #6d28d9;
+}
+
+.category-personal {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.category-projects {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.category-uncategorized {
+    background-color: #e5e7eb;
+    color: #374151;
+}
+
+
+/* =================================
+   15. TASK ACTION BUTTONS
+================================= */
+
+.todo-item button {
+    min-height: 32px;
+    padding: 5px 11px;
+
+    font-size: 11px;
+}
+
+#clear-completed {
+    white-space: nowrap;
+}
+
+
+/* =================================
+   16. EMPTY STATE
+================================= */
+
+.empty-message {
+    margin: 0;
+
+    color: var(--text-secondary);
+    font-size: 13px;
+    text-align: center;
+}
+
+
+/* =================================
+   17. FOOTER
+================================= */
+
+.app-footer {
+    padding-top: 24px;
+
+    color: var(--text-secondary);
+    font-size: 11px;
+    text-align: center;
+}
+
+
+/* =================================
+   18. RESPONSIVE DESIGN
+================================= */
+
+@media (max-width: 800px) {
+
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .task-form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .task-title-field {
+        grid-column: span 2;
+    }
+
+    .controls-top {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .app-shell {
+        width: calc(100% - 28px);
+        padding: 25px 0;
+    }
+
+    .app-header {
+        margin-bottom: 24px;
+    }
+
+    .app-header h1 {
+        font-size: 25px;
+    }
+
+    .stats-grid {
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 14px;
+    }
+
+    .stat-card p {
+        font-size: 13px;
+    }
+
+    .panel {
+        padding: 17px;
+    }
+
+    .task-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .task-title-field {
+        grid-column: auto;
+    }
+
+    .form-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .form-actions .primary-button {
+        width: 100%;
+    }
+
+    .select-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .tasks-heading {
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .todo-item {
+        gap: 9px;
+    }
+
+    .todo-item .todo-text {
+        flex-basis: calc(100% - 35px);
+    }
+
+    .due-date {
+        margin-left: 26px;
+    }
+
+}
