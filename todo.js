@@ -6,6 +6,7 @@ let currentFilter = "all";
 let currentCategory = "all";
 let currentSort = "default";
 let searchTerm = "";
+let currentTheme = "light";
 
 // 2. Select HTML elements
 const todoInput = document.getElementById("todo-input");
@@ -28,6 +29,7 @@ const priorityInput = document.getElementById("priority");
 const categoryInput = document.getElementById("category");
 const categoryFilterInput = document.getElementById("category-filter");
 const sortSelect = document.getElementById("sort-todos");
+const themeButton = document.getElementById("theme-toggle");
 
 
 // 3. Add a todo
@@ -94,6 +96,8 @@ function getVisibleTodos() {
 function applyFilter(filter) {
     currentFilter = filter;
 
+    updateFilterButtonStyles();
+
     renderTodos();
 }
 
@@ -112,6 +116,33 @@ const priorityOrder = {
     medium: 2,
     low: 1
 };
+
+
+// Apply selected theme
+function applyTheme(themeName) {
+
+    currentTheme = themeName;
+
+    const isDark = currentTheme === "dark";
+
+    document.documentElement.classList.toggle("dark-mode", isDark);
+
+    themeButton.textContent = isDark ? "Light Mode" : "Dark Mode";
+
+    themeButton.setAttribute("aria-pressed", String(isDark));
+}
+
+
+// Toggle theme when button is clicked
+themeButton.addEventListener("click", () => {
+
+    const nextTheme = currentTheme === "dark" ? "light" : "dark";
+
+    localStorage.setItem("taskflow-theme", nextTheme);
+
+    applyTheme(nextTheme);
+});
+
 
 //rearranges the todos from highest to lowest priority, treats todo without a priority as having medium priority (2)
 
@@ -359,6 +390,7 @@ document.getElementById("filter-completed").addEventListener("click", () => {
     applyFilter("completed");
 });
 
+
 // 9. Clear completed todos
 clearCompletedButton.addEventListener("click", () => {
 
@@ -368,12 +400,12 @@ clearCompletedButton.addEventListener("click", () => {
     renderTodos();
 });
 
-// Save todos to local storage
+// 10. Save todos to local storage
 function saveTodos() {
     localStorage.setItem("todos", JSON.stringify(todos));
 }
 
-// Load todos from local storage
+// 11. Load todos from local storage
 function loadTodos() {
     const savedTodos = localStorage.getItem("todos");
 
@@ -392,7 +424,32 @@ function loadTodos() {
     }
 }
 
-// Load saved todos when the application starts
+// 12. update filter button styles based on the current filter
+function updateFilterButtonStyles() {
+    const filterButtons = document.querySelectorAll(".filter-button");
+
+    filterButtons.forEach(button => {
+        const filter = button.getAttribute("data-filter");
+
+        if (filter === currentFilter) {
+            button.classList.add("is-active");
+            button.setAttribute("aria-pressed", "true");
+        } else {
+            button.classList.remove("is-active");
+            button.setAttribute("aria-pressed", "false");
+        }
+    });
+}
+
+// Restore saved theme
+const savedTheme = localStorage.getItem("taskflow-theme");
+
+applyTheme(savedTheme === "dark" ? "dark" : "light");
+
+// Update filter buttons
+updateFilterButtonStyles();
+
+// Load saved todos
 loadTodos();
 
 // Display todos

@@ -23,6 +23,40 @@
     --card-radius: 16px;
 }
 
+:root.dark-mode {
+    color-scheme: dark;
+
+    --bg-primary: #101815;
+    --bg-surface: #19231e;
+    --bg-muted: #202d26;
+
+    --text-primary: #edf5ef;
+    --text-secondary: #a2b1a7;
+
+    --border-color: #304138;
+
+    --accent-color: #39a978;
+    --accent-hover: #2b8d63;
+}
+
+:root.dark-mode input::placeholder {
+    color: #82938a;
+}
+
+:root.dark-mode input:hover,
+:root.dark-mode select:hover {
+    border-color: #53665b;
+}
+
+:root.dark-mode .todo-item:hover {
+    border-color: #53665b;
+}
+
+:root.dark-mode button:focus-visible,
+:root.dark-mode input:focus-visible,
+:root.dark-mode select:focus-visible {
+    outline-color: rgba(57, 169, 120, 0.5);
+}
 
 /* =================================
    2. GLOBAL STYLES
@@ -85,6 +119,10 @@ select:focus-visible {
 ================================= */
 
 .app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
     margin-bottom: 32px;
 }
 
@@ -133,6 +171,22 @@ select:focus-visible {
 
     color: var(--text-secondary);
     font-size: 14px;
+}
+
+.theme-toggle {
+    flex-shrink: 0;
+    padding: 10px 16px;
+
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+
+    border: 1px solid var(--border-color);
+    border-radius: 9px;
+}
+
+.theme-toggle:hover {
+    background-color: var(--bg-muted);
+    border-color: var(--accent-color);
 }
 
 
@@ -289,7 +343,7 @@ button {
     border: 1px solid var(--border-color);
     border-radius: 9px;
 
-    background-color: white;
+    background-color: var(--bg-surface);
     color: var(--text-primary);
 
     font-size: 12px;
@@ -300,7 +354,7 @@ button {
 }
 
 button:hover {
-    border-color: #b8c9bf;
+    border-color: var(--accent-hover);
     background-color: var(--bg-muted);
 }
 
@@ -369,6 +423,17 @@ button:active {
     flex: 1;
 }
 
+#filter-options button.is-active {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
+}
+
+#filter-options button.is-active:hover {
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
+}
+
 .select-controls {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -390,13 +455,13 @@ button:active {
 
 .clear-button {
     color: var(--danger-color);
-    border-color: #f1dada;
-    background-color: #fffafa;
+    border-color: var(--danger-color);
+    background-color: transparent;
 }
 
 .clear-button:hover {
-    background-color: #fff0f0;
-    border-color: #edc4c4;
+    background-color: var(--bg-muted);
+    border-color: var(--border-color)
 }
 
 
@@ -617,8 +682,10 @@ button:active {
     }
 
     .app-header {
-        margin-bottom: 24px;
-    }
+    margin-bottom: 24px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
 
     .app-header h1 {
         font-size: 25px;
@@ -677,5 +744,11 @@ button:active {
     .due-date {
         margin-left: 26px;
     }
+
+    .theme-toggle {
+    margin-left: auto;
+    padding: 8px 10px;
+    font-size: 11px;
+}
 
 }

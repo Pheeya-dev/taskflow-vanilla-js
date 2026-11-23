@@ -17,19 +17,32 @@
     <div class="app-shell">
 
         <!-- HEADER -->
-        <header class="app-header">
-            <div class="brand">
-                <div class="brand-mark">T</div>
+     <header class="app-header">
 
-                <div>
-                    <p class="eyebrow">PERSONAL PRODUCTIVITY</p>
-                    <h1>TaskFlow</h1>
-                    <p class="header-subtitle">
-                        Organise your work. Stay on track.
-                    </p>
-                </div>
-            </div>
-        </header>
+    <div class="brand">
+
+        <div class="brand-mark">T</div>
+
+        <div>
+            <p class="eyebrow">PERSONAL PRODUCTIVITY</p>
+            <h1>TaskFlow</h1>
+            <p class="header-subtitle">
+                Organise your work. Stay on track.
+            </p>
+        </div>
+
+    </div>
+
+    <button
+        id="theme-toggle"
+        class="theme-toggle"
+        type="button"
+        aria-pressed="false"
+    >
+        Dark Mode
+    </button>
+
+</header>
 
 
         <main class="app-main">
@@ -128,35 +141,63 @@
                 <div class="controls-top">
 
                     <!-- SEARCH -->
-                    <label class="field search-field" for="search-input">
-                        Search tasks
+                    <div class="field search-field">
 
-                        <div class="search-control">
-                            <input
-                                type="text"
-                                id="search-input"
-                                placeholder="Search your tasks..."
-                            >
+    <label for="search-input">Search tasks</label>
 
-                            <button id="search-todos" type="button">
-                                Search
-                            </button>
-                        </div>
-                    </label>
+    <div class="search-control">
+        <input
+            type="text"
+            id="search-input"
+            placeholder="Search your tasks..."
+        >
+
+        <button id="search-todos" type="button">
+            Search
+        </button>
+    </div>
+
+</div>
 
 
                     <!-- STATUS FILTER -->
                     <div class="field">
                         <span class="field-label">Task status</span>
 
-                        <div id="filter-options">
-                            <button id="filter-all" type="button">All</button>
-                            <button id="filter-active" type="button">Active</button>
-                            <button id="filter-completed" type="button">Completed</button>
-                        </div>
+                       <div id="filter-options">
+                        <button
+        id="filter-all"
+        class="filter-button"
+        data-filter="all"
+        aria-pressed="true"
+        type="button"
+    >
+        All
+                        </button>
+
+                        <button
+        id="filter-active"
+        class="filter-button"
+        data-filter="active"
+        aria-pressed="false"
+        type="button"
+    >
+        Active
+                        </button>
+
+                        <button
+        id="filter-completed"
+        class="filter-button"
+        data-filter="completed"
+        aria-pressed="false"
+        type="button"
+    >
+        Completed
+                        </button>
+                    </div>
                     </div>
 
-                </div>
+                 </div>
 
 
                 <!-- CATEGORY AND SORTING -->
