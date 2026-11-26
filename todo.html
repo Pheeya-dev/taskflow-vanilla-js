@@ -1,270 +1,238 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta name="description" content="TaskFlow - Organise your tasks, manage priorities and stay productive.">
+    <meta
+      name="description"
+      content="TaskFlow - Organise your tasks, manage priorities and stay productive."
+    />
 
-    <link rel="stylesheet" href="todo.css">
+    <link rel="stylesheet" href="todo.css" />
 
     <title>TaskFlow | Personal Task Manager</title>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <div class="app-shell">
+      <!-- HEADER -->
+      <header class="app-header">
+        <div class="brand">
+          <div class="brand-mark">T</div>
 
-        <!-- HEADER -->
-     <header class="app-header">
-
-    <div class="brand">
-
-        <div class="brand-mark">T</div>
-
-        <div>
+          <div>
             <p class="eyebrow">PERSONAL PRODUCTIVITY</p>
             <h1>TaskFlow</h1>
-            <p class="header-subtitle">
-                Organise your work. Stay on track.
-            </p>
+            <p class="header-subtitle">Organise your work. Stay on track.</p>
+          </div>
         </div>
 
-    </div>
-
-    <button
-        id="theme-toggle"
-        class="theme-toggle"
-        type="button"
-        aria-pressed="false"
-    >
-        Dark Mode
-    </button>
-
-</header>
-
-
-        <main class="app-main">
-
-            <!-- TASK STATISTICS -->
-            <section class="stats-grid" aria-label="Task statistics">
-
-                <article class="stat-card">
-                    <span class="stat-label">Tasks Shown</span>
-                    <p id="todo-counter">0</p>
-                </article>
-
-                <article class="stat-card">
-                    <span class="stat-label">Completed</span>
-                    <p id="completed-counter">0</p>
-                </article>
-
-                <article class="stat-card">
-                    <span class="stat-label">Remaining</span>
-                    <p id="uncompleted-counter">0</p>
-                </article>
-
-                <article class="stat-card">
-                    <span class="stat-label">Total Tasks</span>
-                    <p id="total-counter">0</p>
-                </article>
-
-            </section>
-
-
-            <!-- ADD TASK -->
-            <section class="panel composer">
-
-                <div class="section-heading">
-                    <div>
-                        <p class="eyebrow">MAKE PROGRESS</p>
-                        <h2>Create a new task</h2>
-                    </div>
-                </div>
-
-                <div class="task-form-grid">
-
-                    <label class="field task-title-field" for="todo-input">
-                        Task description
-
-                        <input
-                            type="text"
-                            id="todo-input"
-                            placeholder="What needs to get done?"
-                        >
-                    </label>
-
-                    <label class="field" for="due-date-input">
-                        Due date
-
-                        <input type="date" id="due-date-input">
-                    </label>
-
-                    <label class="field" for="priority">
-                        Priority
-
-                        <select id="priority">
-                            <option value="low">Low</option>
-                            <option value="medium" selected>Medium</option>
-                            <option value="high">High</option>
-                        </select>
-                    </label>
-
-                    <label class="field" for="category">
-                        Category
-
-                        <select id="category">
-                            <option value="learning">Learning</option>
-                            <option value="work">Work</option>
-                            <option value="personal" selected>Personal</option>
-                            <option value="projects">Projects</option>
-                        </select>
-                    </label>
-
-                </div>
-
-                <div class="form-actions">
-                    <p>Keep your tasks organised and actionable.</p>
-
-                    <button id="add-todo" class="primary-button" type="button">
-                        + Add Task
-                    </button>
-                </div>
-
-            </section>
-
-
-            <!-- TASK CONTROLS -->
-            <section class="panel controls-panel">
-
-                <div class="controls-top">
-
-                    <!-- SEARCH -->
-                    <div class="field search-field">
-
-    <label for="search-input">Search tasks</label>
-
-    <div class="search-control">
-        <input
-            type="text"
-            id="search-input"
-            placeholder="Search your tasks..."
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          type="button"
+          aria-pressed="false"
         >
-
-        <button id="search-todos" type="button">
-            Search
+          Dark Mode
         </button>
-    </div>
+      </header>
 
-</div>
+      <main class="app-main">
+        <!-- TASK STATISTICS -->
+        <section class="stats-grid" aria-label="Task statistics">
+          <article class="stat-card">
+            <span class="stat-label">Tasks Shown</span>
+            <p id="todo-counter">0</p>
+          </article>
 
+          <article class="stat-card">
+            <span class="stat-label">Completed</span>
+            <p id="completed-counter">0</p>
+          </article>
 
-                    <!-- STATUS FILTER -->
-                    <div class="field">
-                        <span class="field-label">Task status</span>
+          <article class="stat-card">
+            <span class="stat-label">Remaining</span>
+            <p id="uncompleted-counter">0</p>
+          </article>
 
-                       <div id="filter-options">
-                        <button
-        id="filter-all"
-        class="filter-button"
-        data-filter="all"
-        aria-pressed="true"
-        type="button"
-    >
-        All
-                        </button>
+          <article class="stat-card">
+            <span class="stat-label">Total Tasks</span>
+            <p id="total-counter">0</p>
+          </article>
+        </section>
 
-                        <button
-        id="filter-active"
-        class="filter-button"
-        data-filter="active"
-        aria-pressed="false"
-        type="button"
-    >
-        Active
-                        </button>
+        <!-- ADD TASK -->
+        <section class="panel composer">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">MAKE PROGRESS</p>
+              <h2>Create a new task</h2>
+            </div>
+          </div>
 
-                        <button
-        id="filter-completed"
-        class="filter-button"
-        data-filter="completed"
-        aria-pressed="false"
-        type="button"
-    >
-        Completed
-                        </button>
-                    </div>
-                    </div>
+          <div class="task-form-grid">
+            <label class="field task-title-field" for="todo-input">
+              Task description
 
-                 </div>
+              <input
+                type="text"
+                id="todo-input"
+                placeholder="What needs to get done?"
+              />
+            </label>
 
+            <label class="field" for="due-date-input">
+              Due date
 
-                <!-- CATEGORY AND SORTING -->
-                <div class="select-controls">
+              <input type="date" id="due-date-input" />
+            </label>
 
-                    <label class="field" for="category-filter">
-                        Filter by category
+            <label class="field" for="due-time-input">
+              Due time
+              <input type="time" id="due-time-input" />
+            </label>
 
-                        <select id="category-filter">
-                            <option value="all">All Categories</option>
-                            <option value="learning">Learning</option>
-                            <option value="work">Work</option>
-                            <option value="personal">Personal</option>
-                            <option value="projects">Projects</option>
-                            <option value="uncategorized">Uncategorized</option>
-                        </select>
-                    </label>
+            <label class="field" for="priority">
+              Priority
 
-                    <label class="field" for="sort-todos">
-                        Sort tasks
+              <select id="priority">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+              </select>
+            </label>
 
-                        <select id="sort-todos">
-                            <option value="default">Default Order</option>
-                            <option value="priority">Priority: High to Low</option>
-                            <option value="due-asc">Due Date: Earliest First</option>
-                            <option value="due-desc">Due Date: Latest First</option>
-                        </select>
-                    </label>
+            <label class="field" for="category">
+              Category
 
-                </div>
+              <select id="category">
+                <option value="learning">Learning</option>
+                <option value="work">Work</option>
+                <option value="personal" selected>Personal</option>
+                <option value="projects">Projects</option>
+              </select>
+            </label>
+          </div>
 
-            </section>
+          <div class="form-actions">
+            <p>Keep your tasks organised and actionable.</p>
 
+            <button id="add-todo" class="primary-button" type="button">
+              + Add Task
+            </button>
+          </div>
+        </section>
 
-            <!-- TASK LIST -->
-            <section class="panel task-panel">
+        <!-- TASK CONTROLS -->
+        <section class="panel controls-panel">
+          <div class="controls-top">
+            <!-- SEARCH -->
+            <div class="field search-field">
+              <label for="search-input">Search tasks</label>
 
-                <div class="tasks-heading">
+              <div class="search-control">
+                <input
+                  type="text"
+                  id="search-input"
+                  placeholder="Search your tasks..."
+                />
 
-                    <div>
-                        <p class="eyebrow">YOUR WORKSPACE</p>
-                        <h2>Your Tasks</h2>
-                    </div>
+                <button id="search-todos" type="button">Search</button>
+              </div>
+            </div>
 
-                    <button id="clear-completed" class="clear-button" type="button">
-                        Clear Completed
-                    </button>
+            <!-- STATUS FILTER -->
+            <div class="field">
+              <span class="field-label">Task status</span>
 
-                </div>
+              <div id="filter-options">
+                <button
+                  id="filter-all"
+                  class="filter-button"
+                  data-filter="all"
+                  aria-pressed="true"
+                  type="button"
+                >
+                  All
+                </button>
 
-                <p id="empty-message" class="empty-message" aria-live="polite"></p>
+                <button
+                  id="filter-active"
+                  class="filter-button"
+                  data-filter="active"
+                  aria-pressed="false"
+                  type="button"
+                >
+                  Active
+                </button>
 
-                <ul id="todo-list"></ul>
+                <button
+                  id="filter-completed"
+                  class="filter-button"
+                  data-filter="completed"
+                  aria-pressed="false"
+                  type="button"
+                >
+                  Completed
+                </button>
+              </div>
+            </div>
+          </div>
 
-            </section>
+          <!-- CATEGORY AND SORTING -->
+          <div class="select-controls">
+            <label class="field" for="category-filter">
+              Filter by category
 
-        </main>
+              <select id="category-filter">
+                <option value="all">All Categories</option>
+                <option value="learning">Learning</option>
+                <option value="work">Work</option>
+                <option value="personal">Personal</option>
+                <option value="projects">Projects</option>
+                <option value="uncategorized">Uncategorized</option>
+              </select>
+            </label>
 
+            <label class="field" for="sort-todos">
+              Sort tasks
 
-        <!-- FOOTER -->
-        <footer class="app-footer">
-            <p>TaskFlow · Stay organised. Keep moving.</p>
-        </footer>
+              <select id="sort-todos">
+                <option value="default">Default Order</option>
+                <option value="priority">Priority: High to Low</option>
+                <option value="due-asc">Due Date: Earliest First</option>
+                <option value="due-desc">Due Date: Latest First</option>
+              </select>
+            </label>
+          </div>
+        </section>
 
+        <!-- TASK LIST -->
+        <section class="panel task-panel">
+          <div class="tasks-heading">
+            <div>
+              <p class="eyebrow">YOUR WORKSPACE</p>
+              <h2>Your Tasks</h2>
+            </div>
+
+            <button id="clear-completed" class="clear-button" type="button">
+              Clear Completed
+            </button>
+          </div>
+
+          <p id="empty-message" class="empty-message" aria-live="polite"></p>
+
+          <ul id="todo-list"></ul>
+        </section>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="app-footer">
+        <p>TaskFlow · Stay organised. Keep moving.</p>
+      </footer>
     </div>
 
     <script src="todo.js"></script>
-
-</body>
+  </body>
 </html>

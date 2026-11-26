@@ -11,6 +11,7 @@ let currentTheme = "light";
 // 2. Select HTML elements
 const todoInput = document.getElementById("todo-input");
 const dueDateInput = document.getElementById("due-date-input");
+const dueTimeInput = document.getElementById("due-time-input");
 const addTodoButton = document.getElementById("add-todo");
 const todoList = document.getElementById("todo-list");
 
@@ -36,6 +37,7 @@ const themeButton = document.getElementById("theme-toggle");
 function addTodo() {
     const todoText = todoInput.value.trim();
     const dueDate = dueDateInput.value;
+    const dueTime = dueTimeInput.value;
     const priority = priorityInput.value;
     const category = categoryInput.value;
     if (!todoText) {
@@ -45,6 +47,7 @@ function addTodo() {
     const todo = {
         text: todoText,
         dueDate: dueDate,
+        dueTime: dueTime,
         priority: priority,
         category: category,
         completed: false
@@ -56,6 +59,7 @@ function addTodo() {
 
     todoInput.value = "";
     dueDateInput.value = "";
+    dueTimeInput.value = "";
     priorityInput.value = "medium";
     categoryInput.value = "personal";
 
@@ -155,28 +159,51 @@ function sortTodosByPriority(todos) {
     });
 }
 
-// Sort todos by due date,earliest first,followed by latest, todos without due dates always appears at the bottom, default restores the initial order
+// Return a comparable timestamp for a todo's due date and time.
+function getDueDateTime(todo) {
+    if (!todo.dueDate) {
+        return null;
+    }
+
+    const [year, month, day] = todo.dueDate.split("-").map(Number);
+
+    const [hours, minutes] = (todo.dueTime || "23:59")
+        .split(":")
+        .map(Number);
+
+    const dateTime = new Date(year, month - 1, day, hours, minutes);
+
+    return Number.isNaN(dateTime.getTime())
+        ? null
+        : dateTime.getTime();
+}
+
+// Sort todos by due date and time, earliest first; todos without a due date stay at the bottom.
 function sortTodosByDueDate(todos, direction = "asc") {
     return todos.sort((a, b) => {
 
-        if (!a.dueDate && !b.dueDate) return 0;
+        const dateTimeA = getDueDateTime(a);
+        const dateTimeB = getDueDateTime(b);
 
-        if (!a.dueDate) return 1;
+        if (dateTimeA === null && dateTimeB === null) return 0;
 
-        if (!b.dueDate) return -1;
+        if (dateTimeA === null) return 1;
+        if (dateTimeB === null) return -1;
 
         if (direction === "desc") {
-            return b.dueDate.localeCompare(a.dueDate);
+            return dateTimeB - dateTimeA;
         }
 
-        return a.dueDate.localeCompare(b.dueDate);
+        return dateTimeA - dateTimeB;
     });
 }
+
 //event listener to the sort select element to handle sorting when the user selects a different option
 sortSelect.addEventListener("change", () => {
     currentSort = sortSelect.value;
     renderTodos();
 });
+
 
 // 5. Display todos
 function renderTodos() {
@@ -234,7 +261,7 @@ function renderTodos() {
         todoText.className = "todo-text";
         todoText.textContent = todo.text;
 
-        // Display due date
+        // Display due date and time
         const dueDateElement = document.createElement("span");
 
         dueDateElement.className = "due-date";
@@ -249,8 +276,24 @@ function renderTodos() {
             year: "numeric"
         });
 
-         dueDateElement.textContent = `Due: ${formattedDate}`;
+        const formattedTime = todo.dueTime
+    ? (() => {
+        const [hours, minutes] = todo.dueTime.split(":").map(Number);
+
+        return new Date(2000, 0, 1, hours, minutes)
+            .toLocaleTimeString("en-NG", {
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true
+            });
+    })()
+    : "";
+
+        dueDateElement.textContent = `Due: ${formattedDate}${formattedTime ? ` • ${formattedTime}` : ""}`;
         }
+
+
+
 
         // Display priority
         const priorityElement = document.createElement("span");
@@ -440,6 +483,8 @@ function updateFilterButtonStyles() {
         }
     });
 }
+
+
 
 // Restore saved theme
 const savedTheme = localStorage.getItem("taskflow-theme");
